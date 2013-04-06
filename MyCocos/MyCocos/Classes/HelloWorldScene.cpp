@@ -27,6 +27,8 @@ CCScene* HelloWorld::scene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+	m_pSprite = NULL;
+	m_pButtonSprite = NULL;
     bool bRet = false;
     do 
     {
@@ -69,13 +71,6 @@ bool HelloWorld::init()
         CCLabelTTF* pLabel = CCLabelTTF::create(pConvertWords, "simhei.ttf", 24); //"Arial"
         CC_BREAK_IF(! pLabel);
 
-		//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-		pszMyWords = "Hello World 尤建喜";
-		pConvertWords = SoComponent::AnsiToUtf8(pszMyWords);
-		CCLabelTTF* pLabel__ = CCLabelTTF::create(pConvertWords, "simhei.ttf", 24); //"Arial"
-		CC_BREAK_IF(! pLabel__);
-		//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
         // Get window size and place the label upper. 
         CCSize size = CCDirector::sharedDirector()->getWinSize();
         pLabel->setPosition(ccp(size.width / 2, size.height - 50));
@@ -87,11 +82,39 @@ bool HelloWorld::init()
         CCSprite* pSprite = CCSprite::create("HelloWorld.png");
         CC_BREAK_IF(! pSprite);
 
+		//以图片的左上角作为锚点。
+		pSprite->setAnchorPoint(CCPoint(0.0f, 1.0f));
         // Place the sprite on the center of the screen
-        pSprite->setPosition(ccp(size.width/2, size.height/2));
+        //pSprite->setPosition(ccp(size.width/2, size.height/2));
+		pSprite->setPosition(CCPoint(0.0f, size.height));
+
+		//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+		//CCActionInterval* action = CCScaleBy::create(3, 2);
+		////CCActionInterval* action_back = action->reverse();
+		////CCActionInterval* seq = (CCActionInterval*)(CCSequence::create( action, action_back, NULL ));
+
+		////pSprite->runAction( CCRepeatForever::create(seq) );
+
+		//pSprite->runAction(action);
+		//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
         // Add the sprite to HelloWorld layer as a child layer.
         this->addChild(pSprite, 0);
+		m_pSprite = pSprite;
+
+
+		//CCSprite* pSprite_2 = CCSprite::create("HelloWorld.png");
+		//CC_BREAK_IF(! pSprite_2);
+
+		//// Place the sprite on the center of the screen
+		//pSprite_2->setPosition(ccp(size.width/2-10.0f, size.height/2));
+		//this->addChild(pSprite_2, -10);
+
+		m_pButtonSprite = new CCButtonSprite;
+		m_pButtonSprite->InitButtonSprite("HelloWorld.png");
+		m_pButtonSprite->setPosition(CCPoint(0.0f, size.height));
+		this->addChild(m_pButtonSprite, 0);
 
         bRet = true;
     } while (0);
@@ -101,7 +124,17 @@ bool HelloWorld::init()
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
-    // "close" menu item clicked
-    CCDirector::sharedDirector()->end();
+    //// "close" menu item clicked
+    //CCDirector::sharedDirector()->end();
+
+	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	CCActionInterval* action = CCScaleBy::create(3, 2);
+	//CCActionInterval* action_back = action->reverse();
+	//CCActionInterval* seq = (CCActionInterval*)(CCSequence::create( action, action_back, NULL ));
+
+	//pSprite->runAction( CCRepeatForever::create(seq) );
+
+	m_pSprite->runAction(action);
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
 

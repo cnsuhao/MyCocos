@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Classes\CCButtonSprite.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\Classes\HelloWorldScene.cpp"
 				>
 			</File>
@@ -229,6 +233,10 @@
 			>
 			<File
 				RelativePath="..\Classes\AppDelegate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\CCButtonSprite.h"
 				>
 			</File>
 			<File

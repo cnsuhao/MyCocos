@@ -2,10 +2,9 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-
 #include "Box2D/Box2D.h"
-
 #include "SimpleAudioEngine.h"
+#include "CCButtonSprite.h"
 
 class HelloWorld : public cocos2d::CCLayer
 {
@@ -21,6 +20,10 @@ public:
 
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
+
+private:
+	cocos2d::CCSprite* m_pSprite;
+	cocos2d::CCButtonSprite* m_pButtonSprite;
 };
 
 #endif  // __HELLOWORLD_SCENE_H__
